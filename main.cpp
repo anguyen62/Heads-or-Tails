@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// function declaration
 bool flipCoin ();
 
 int main () {
@@ -14,7 +15,8 @@ int main () {
   char userDecision;
   srand(time(NULL));
 
-  while (userDecision != 'n') {
+  // While the user does not say "no", continue loop.
+  while (userDecision != 'n' || userDecision != 'N') {
     cout << "Flip a coin? (Y for yes, N for no. Press F if you want to flip a certain number of times!): ";
     cin >> userDecision;
     bool trueorfalse = flipCoin();
@@ -29,16 +31,16 @@ int main () {
         cout << "Heads: " << headCount << " |  Tails: " << tailCount << endl;
       }
     }
-
+    
     else if (userDecision == 'n' || userDecision == 'N') {
       break;
     }
-
-    // Work on this so it counts heads and tails separately on each call rather than just 100 times.
+    
     else if (userDecision == 'f' || userDecision == 'F') {
       cout << "How many times would you like to flip?: ";
       int numberofFlips;
       cin >> numberofFlips;
+      
       for (int i=0; i < numberofFlips; i++) {
         bool trueorfalse2 = flipCoin();
         if (trueorfalse2 == true) {
@@ -76,7 +78,7 @@ bool flipCoin () {
   int somenumber = 0;
   somenumber = (rand() %100) + 1;
   //number check. Comment out if you wanna prove correctness.
-  //cout << somenumber << endl;
+  //cout << somenumber << " / ";
 
   if (somenumber%2!=0) { // odd numbers, or heads
     return true;
