@@ -9,6 +9,7 @@ using namespace std;
 // function declaration
 bool flipCoin ();
 void count (int headCount, int tailCount);
+void tallyResults (int headCount, int tailCount);
 
 int main () {
   int tailCount = 0;
@@ -42,6 +43,11 @@ int main () {
       int numberofFlips;
       cin >> numberofFlips;
 
+      if (cin.fail()) {
+        cout << "Enter a valid integer for number of flips." << endl;
+      }
+
+      else {
       for (int i=0; i < numberofFlips; i++) {
         bool trueorfalse2 = flipCoin();
         if (trueorfalse2 == true) {
@@ -53,7 +59,7 @@ int main () {
       }
       count (headCount, tailCount);
     }
-
+  }
     else {
       cout << "Please input the correct command." << '\n';
     }
@@ -62,16 +68,8 @@ int main () {
   // If loop ends, count number of flips and which side wins.
   cout << "\nFINAL COUNT: "<< endl;
   count (headCount, tailCount);
+  tallyResults (headCount, tailCount);
 
-  if (headCount > tailCount) {
-    cout << "        ...Head WINS!" << '\n';
-  }
-  else if (tailCount > headCount) {
-      cout << "        ...Tails WINS!" << '\n';
-  }
-  else if (tailCount == headCount) {
-    cout << "        ...it's a TIE!" << '\n';
-  }
   return 0;
 }
 
@@ -89,4 +87,16 @@ bool flipCoin () {
 
 void count (int headCount, int tailCount) {
   cout << "  Heads: " << headCount << " |  Tails: " << tailCount << endl;
+}
+
+void tallyResults (int headCount, int tailCount) {
+  if (headCount > tailCount) {
+    cout << "        ...Head WINS!" << '\n';
+  }
+  else if (tailCount > headCount) {
+      cout << "        ...Tails WINS!" << '\n';
+  }
+  else if (tailCount == headCount) {
+    cout << "        ...it's a TIE!" << '\n';
+  }
 }
