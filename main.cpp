@@ -8,6 +8,7 @@ using namespace std;
 
 // function declaration
 bool flipCoin ();
+void count (int headCount, int tailCount);
 
 int main () {
   int tailCount = 0;
@@ -24,23 +25,23 @@ int main () {
     if (userDecision == 'y' || userDecision == 'Y') {
       if (trueorfalse == true) {
         headCount=headCount+1;
-        cout << "Heads: " << headCount << " |  Tails: " << tailCount << endl;
+        count (headCount, tailCount);
       }
       else if (trueorfalse == false) {
         tailCount=tailCount+1;
-        cout << "Heads: " << headCount << " |  Tails: " << tailCount << endl;
+        count (headCount, tailCount);
       }
     }
-    
+
     else if (userDecision == 'n' || userDecision == 'N') {
       break;
     }
-    
+
     else if (userDecision == 'f' || userDecision == 'F') {
       cout << "How many times would you like to flip?: ";
       int numberofFlips;
       cin >> numberofFlips;
-      
+
       for (int i=0; i < numberofFlips; i++) {
         bool trueorfalse2 = flipCoin();
         if (trueorfalse2 == true) {
@@ -50,7 +51,7 @@ int main () {
           tailCount=tailCount+1;
         }
       }
-      cout << "Heads: " << headCount << " |  Tails: " << tailCount << endl;
+      count (headCount, tailCount);
     }
 
     else {
@@ -60,7 +61,7 @@ int main () {
 
   // If loop ends, count number of flips and which side wins.
   cout << "\nFINAL COUNT: "<< endl;
-  cout << "Heads: " << headCount << "   |  Tails: " << tailCount;
+  count (headCount, tailCount);
 
   if (headCount > tailCount) {
     cout << "        ...Head WINS!" << '\n';
@@ -80,8 +81,12 @@ bool flipCoin () {
   //number check. Comment out if you wanna prove correctness.
   //cout << somenumber << " / ";
 
-  if (somenumber%2!=0) { // odd numbers, or heads
+  if (somenumber%2 != 0) { // odd numbers, or heads
     return true;
   }
   else return false;  // even numbers, or tails
+}
+
+void count (int headCount, int tailCount) {
+  cout << "  Heads: " << headCount << " |  Tails: " << tailCount << endl;
 }
