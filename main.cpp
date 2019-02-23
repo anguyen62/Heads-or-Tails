@@ -12,11 +12,11 @@ int main () {
   int tailCount = 0;
   int headCount = 0;
   char userDecision;
-  srand(time(NULL));  // srand must be initialized in main to create new random numbers quickly
+  srand(time(NULL));
 
   while (userDecision != 'n') {
-    cout << "Flip a coin? (Y for yes, N for no. Press F to leave the choice to fate!): ";
-    std::cin >> userDecision;
+    cout << "Flip a coin? (Y for yes, N for no. Press F if you want to flip a certain number of times!): ";
+    cin >> userDecision;
     bool trueorfalse = flipCoin();
 
     if (userDecision == 'y' || userDecision == 'Y') {
@@ -36,7 +36,10 @@ int main () {
 
     // Work on this so it counts heads and tails separately on each call rather than just 100 times.
     else if (userDecision == 'f' || userDecision == 'F') {
-      for (int i=0; i < 100; i++) {
+      cout << "How many times would you like to flip?: ";
+      int numberofFlips;
+      cin >> numberofFlips;
+      for (int i=0; i < numberofFlips; i++) {
         bool trueorfalse2 = flipCoin();
         if (trueorfalse2 == true) {
           headCount=headCount+1;
@@ -49,20 +52,22 @@ int main () {
     }
 
     else {
-      std::cout << "Please input the correct command." << '\n';
+      cout << "Please input the correct command." << '\n';
     }
   }
+
+  // If loop ends, count number of flips and which side wins.
   cout << "\nFINAL COUNT: "<< endl;
   cout << "Heads: " << headCount << "   |  Tails: " << tailCount;
 
   if (headCount > tailCount) {
-    std::cout << "        ...Head WINS!" << '\n';
+    cout << "        ...Head WINS!" << '\n';
   }
   else if (tailCount > headCount) {
-      std::cout << "        ...Tails WINS!" << '\n';
+      cout << "        ...Tails WINS!" << '\n';
   }
   else if (tailCount == headCount) {
-    std::cout << "        ...it's a TIE!" << '\n';
+    cout << "        ...it's a TIE!" << '\n';
   }
   return 0;
 }
@@ -70,8 +75,8 @@ int main () {
 bool flipCoin () {
   int somenumber = 0;
   somenumber = (rand() %100) + 1;
-  //number check
-  cout << somenumber << endl;
+  //number check. Comment out if you wanna prove correctness.
+  //cout << somenumber << endl;
 
   if (somenumber%2!=0) { // odd numbers, or heads
     return true;
